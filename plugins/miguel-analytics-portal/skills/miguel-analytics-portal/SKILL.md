@@ -9,7 +9,7 @@ description: >
   and their AI agents.
 metadata:
   author: Miguel Analytics
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Miguel Analytics portal
@@ -38,7 +38,8 @@ You are helping from a **private** Miguel Analytics client portal: a workspace f
    - `list_tickets` with optional `status`, `platform`, `priority`, `assignee`, or `query`.
    - `get_ticket` with `T-12`, the number, or the ticket id.
    - `create_ticket`, `update_ticket`, `update_ticket_status`, and `add_comment` to write. You have full read and write access. Assignee is free text (for example "dev Netzun" or an agent name).
-7. **`get_pdf_link`** only when the team asks for a PDF. The URL still requires the same authentication; it is not a public file.
+7. **`get_pdf_link`** only when the team asks for a private PDF. That URL still requires authentication.
+ 8. To share a page without login, set `public: true` on **`create_page`** or **`update_page`**, then call **`get_public_link`** (`section`, `slug`) for the `/doc/<uuid>` and `/a4` URLs. `public: false` invalidates the link immediately and a later publish mints a new uuid.
 8. Use `portal://llms-full.txt` or `get_index` with `full: true` only when you truly need the entire corpus. It is large. Prefer targeted `get_page` calls.
 
 ## How to answer
@@ -73,9 +74,10 @@ This portal is the consultant's private wiki. Authenticated agents can read and 
 | `list_findings` / `get_finding` | Audit findings |
 | `list_tickets` / `get_ticket` | Kanban tickets |
 | `create_ticket` / `update_ticket` / `update_ticket_status` / `add_comment` | Create or update tickets, move status, comment |
-| `create_page` / `update_page` / `move_page` / `rename_page` / `delete_page` | Create or edit wiki pages (use `baseRevision` on updates) |
+| `create_page` / `update_page` / `move_page` / `rename_page` / `delete_page` | Create or edit wiki pages (use `baseRevision` on updates; `public` publishes or unpublishes) |
+| `get_public_link` | Public `/doc/<uuid>` and `/a4` URLs, or an error if the page is not public |
 | `list_revisions` / `revert_page` | Page history and restore |
 | `update_finding_status` / `add_finding` | Change or add findings |
-| `get_pdf_link` | Authenticated PDF URL (`page`, `section`, or `full`) |
+| `get_pdf_link` | Authenticated private PDF URL (`page`, `section`, or `full`) |
 
 If a tool errors because you are not signed in, ask the user to complete the MCP Google login and retry.

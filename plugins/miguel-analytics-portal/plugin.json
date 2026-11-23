@@ -1,6 +1,6 @@
 {
   "name": "miguel-analytics-portal",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "MCP and skills for the private Miguel Analytics client portal. Use to navigate audit findings, the tracking plan, and per-platform implementation pages after the user signs in with an allowlisted Google account.",
   "author": {
     "name": "Miguel Analytics",

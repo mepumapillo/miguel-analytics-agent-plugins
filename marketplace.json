@@ -5,13 +5,14 @@
     "url": "https://miguelanalytics.dev"
   },
   "metadata": {
-    "description": "Plugins oficiales de Miguel Analytics: MCP y skills para el portal privado de auditor\u00eda de tracking."
+    "description": "Plugins oficiales de Miguel Analytics: MCP y skills para el portal privado de auditoría de tracking."
   },
   "plugins": [
     {
       "name": "miguel-analytics-portal",
       "source": "./plugins/miguel-analytics-portal",
-      "description": "MCP y skills para navegar el portal privado de auditor\u00eda de tracking. El cliente se elige al autenticar."
+      "description": "MCP y skills para navegar el portal privado de auditoría de tracking. El cliente se elige al autenticar.",
+      "version": "1.1.0"
     }
   ]
 }
