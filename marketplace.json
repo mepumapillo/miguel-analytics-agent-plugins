@@ -1,0 +1,17 @@
+{
+  "name": "miguel-analytics",
+  "owner": {
+    "name": "Miguel Analytics",
+    "url": "https://miguelanalytics.dev"
+  },
+  "metadata": {
+    "description": "Plugins oficiales de Miguel Analytics: MCP y skills para el portal privado de auditor\u00eda de tracking."
+  },
+  "plugins": [
+    {
+      "name": "miguel-analytics-portal",
+      "source": "./plugins/miguel-analytics-portal",
+      "description": "MCP y skills para navegar el portal privado de auditor\u00eda de tracking. El cliente se elige al autenticar."
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "miguel-analytics-portal": {
+    "type": "http",
+    "url": "https://netzun.miguelanalytics.dev/api/mcp"
+  }
+}
