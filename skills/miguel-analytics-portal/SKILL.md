@@ -2,9 +2,10 @@
 name: miguel-analytics-portal
 description: >
   Use when working with a Miguel Analytics client portal or audit: findings,
-  tracking plan, measurement implementation, GA4, Meta, TikTok, server-side
-  tagging, or when the Miguel Analytics MCP is connected. Helps the client's
-  dev team implement or review tracking work from the private portal.
+  tickets / Kanban, tracking plan, measurement implementation, GA4, Meta,
+  TikTok, server-side tagging, or when the Miguel Analytics MCP is connected.
+  Helps implement or review tracking work and manage project tickets from the
+  private portal.
 metadata:
   author: Miguel Analytics
   version: "1.0.0"
@@ -12,7 +13,7 @@ metadata:
 
 # Miguel Analytics portal
 
-You are helping a client's development team work from their **private** Miguel Analytics audit portal. The portal is only available after the user authenticates with Google through the MCP. The client is selected at login by the allowlist — never hard-code a client, and never invent pages, events, or findings.
+You are helping from a **private** Miguel Analytics client portal: a workspace for the consultant and their AI agents to run the project. The portal is only available after Google (or token) authentication through the MCP. The client is selected at login by the allowlist — never hard-code a client, and never invent pages, events, findings, or tickets.
 
 ## Privacy
 
@@ -32,10 +33,14 @@ You are helping a client's development team work from their **private** Miguel A
    - Use the index to locate the tracking plan, dictionary, and per-platform pages (web, GA4, Meta, TikTok, server-side, or whatever the catalog lists).
    - `get_page` with `section` + `slug`, or `url`.
 5. **`search`** when you need a keyword and do not know the page.
-6. **`get_pdf_link`** only when the team asks for a PDF. The URL still requires the same authentication; it is not a public file.
-7. Use `portal://llms-full.txt` or `get_index` with `full: true` only when you truly need the entire corpus. It is large. Prefer targeted `get_page` calls.
+6. **Tickets** when the question is about pending work, the Kanban, or what to leave for a developer or another agent:
+   - `list_tickets` with optional `status`, `platform`, `priority`, `assignee`, or `query`.
+   - `get_ticket` with `T-12`, the number, or the ticket id.
+   - `create_ticket`, `update_ticket`, `update_ticket_status`, and `add_comment` to write. You have full read and write access. Assignee is free text (for example "dev Netzun" or an agent name).
+7. **`get_pdf_link`** only when the team asks for a PDF. The URL still requires the same authentication; it is not a public file.
+8. Use `portal://llms-full.txt` or `get_index` with `full: true` only when you truly need the entire corpus. It is large. Prefer targeted `get_page` calls.
 
-## How to answer the client's dev team
+## How to answer
 
 - Cite finding IDs and the portal page title. Quote the relevant requirement, event, or parameter instead of paraphrasing loosely.
 - Be implementation-oriented: what to change, in which platform or property, and how to verify (event name, trigger, parameters, destination).
@@ -54,6 +59,8 @@ You are helping a client's development team work from their **private** Miguel A
 | `get_page` | Full markdown of one page |
 | `search` | Keyword lookup |
 | `list_findings` / `get_finding` | Audit findings |
+| `list_tickets` / `get_ticket` | Kanban tickets |
+| `create_ticket` / `update_ticket` / `update_ticket_status` / `add_comment` | Create or update tickets, move status, comment |
 | `get_pdf_link` | Authenticated PDF URL (`page`, `section`, or `full`) |
 
 If a tool errors because you are not signed in, ask the user to complete the MCP Google login and retry.
